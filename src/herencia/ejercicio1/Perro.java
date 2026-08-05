@@ -3,7 +3,7 @@ package herencia.ejercicio1;
 public class Perro extends Animal {
 
     public Perro(String nombre, int edad) {
-        super(nombre, edad);
+        super(nombre, edad, "Perro");
     }
 
     @Override
