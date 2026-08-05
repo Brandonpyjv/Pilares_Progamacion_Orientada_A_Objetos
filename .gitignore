@@ -28,3 +28,13 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Notas de estudio (no subir al repositorio) ###
+EXPLICACION.md
+**/EXPLICACION.md
+
+### Herramientas locales (no subir al repositorio) ###
+.claude/
+**/.claude/
+CLAUDE.md
+**/CLAUDE.md

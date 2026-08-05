@@ -9,18 +9,19 @@ public class CuentaBancaria{
     private double saldo;
 
 
-    public CuentaBancaria(String numeroCuenta, String titular, double saldo) {
+    public CuentaBancaria(String numeroCuenta, String titular) {
+        this(numeroCuenta, titular, 0.0);
+    }
+
+    public CuentaBancaria(String numeroCuenta, String titular, double saldoInicial) {
         this.numeroCuenta = numeroCuenta;
         this.titular = titular;
-        this.saldo = saldo;
+        // Ni siquiera el constructor puede dejar la cuenta en rojo
+        this.saldo = (saldoInicial > 0) ? saldoInicial : 0.0;
     }
 
     public String getNumeroCuenta() {
         return numeroCuenta;
-    }
-
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
     }
 
     public String getTitular() {
@@ -29,27 +30,71 @@ public class CuentaBancaria{
     public void setTitular(String titular) {
         this.titular = titular;
     }
+
+    // Solo lectura: NO existe setSaldo(). El saldo unicamente cambia
+    // a traves de depositar(), retirar() y transferir().
     public double getSaldo() {
         return saldo;
     }
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+
+    public boolean depositar(double cantidad){
+        if (cantidad <= 0) {
+            System.out.println("Error: la cantidad a depositar debe ser positiva.");
+            return false;
+        }
+        double saldoInicial = saldo;
+        saldo += cantidad;
+        System.out.println("Deposito exitoso | Saldo inicial: $" + saldoInicial +
+                " | Depositado: $" + cantidad + " | Saldo total: $" + saldo);
+        return true;
     }
 
-    public void depositar(double cantidad){
-        if(cantidad>0) {
-            double saldoini = saldo;
-            double valor = (this.saldo += cantidad);
-            System.out.println("Saldo inicial: " + saldoini + " | Saldo depositado: " + cantidad + " | Saldo total: " + valor);
+    public boolean retirar(double cantidad){
+        if (cantidad <= 0) {
+            System.out.println("Error: la cantidad a retirar debe ser positiva.");
+            return false;
         }
+        if (cantidad > saldo) {
+            System.out.println("Error: saldo insuficiente. Disponible: $" + saldo +
+                    " | Solicitado: $" + cantidad);
+            return false;
+        }
+        double saldoInicial = saldo;
+        saldo -= cantidad;
+        System.out.println("Retiro exitoso | Saldo inicial: $" + saldoInicial +
+                " | Retirado: $" + cantidad + " | Saldo total: $" + saldo);
+        return true;
     }
-    public void retirar(double cantidad){
-        if(cantidad<saldo) {
-            double saldoini = saldo;
-            double valor = this.saldo -= cantidad;
-            System.out.println("Saldo inicial: " + saldoini + " | Saldo retirado: " + cantidad + " | Saldo total: " + valor);
-        }
 
+    /**
+     * Mueve dinero de esta cuenta a la cuenta destino.
+     * La operacion es atomica: o se retira Y se deposita, o no pasa nada.
+     */
+    public boolean transferir(CuentaBancaria destino, double cantidad) {
+        if (destino == null) {
+            System.out.println("Error: la cuenta destino no existe.");
+            return false;
+        }
+        if (destino == this) {
+            System.out.println("Error: no puedes transferirte dinero a ti mismo.");
+            return false;
+        }
+        // depositar() y retirar() ya validan cantidad positiva y saldo suficiente,
+        // asi que no repetimos esas reglas aqui.
+        if (!retirar(cantidad)) {
+            System.out.println("Transferencia cancelada: no se pudo retirar de " + numeroCuenta);
+            return false;
+        }
+        if (!destino.depositar(cantidad)) {
+            // Si el deposito fallara, devolvemos el dinero para no perderlo
+            saldo += cantidad;
+            System.out.println("Transferencia revertida: no se pudo depositar en " + destino.getNumeroCuenta());
+            return false;
+        }
+        System.out.println("Transferencia exitosa de $" + cantidad +
+                " | De: " + titular + " (" + numeroCuenta + ")" +
+                " -> Para: " + destino.getTitular() + " (" + destino.getNumeroCuenta() + ")");
+        return true;
     }
 
     @Override
@@ -61,5 +106,3 @@ public class CuentaBancaria{
                 '}';
     }
 }
-
-
