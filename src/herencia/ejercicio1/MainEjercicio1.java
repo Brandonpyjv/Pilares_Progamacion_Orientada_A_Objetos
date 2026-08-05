@@ -1,11 +1,7 @@
-package herencia;
-
-import herencia.ejercicio1.Gato;
-import herencia.ejercicio1.Pajaro;
-import herencia.ejercicio1.Perro;
+package herencia.ejercicio1;
 
 
-public class MainHerencia {
+public class MainEjercicio1 {
 
     public static void main(String[] args) {
         Perro firulais = new Perro("Firulais", 4);
