@@ -1,4 +1,4 @@
-package Encapsulamiento.Ejercicio1;
+package encapsulamiento.ejercicio1;
 
 public class CuentaBancaria{
 

@@ -1,9 +1,29 @@
-import Encapsulamiento.Ejercicio1.CuentaBancaria;
+package encapsulamiento;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+import encapsulamiento.ejercicio1.CuentaBancaria;
+
+/**
+ * Punto de entrada del pilar ENCAPSULAMIENTO.
+ * Ejecuta todos los ejercicios de este pilar, uno tras otro.
+ *
+ * Para agregar un ejercicio nuevo:
+ *   1. Crear el paquete encapsulamiento.ejercicioN con sus clases.
+ *   2. Agregar aqui un metodo privado ejercicioN().
+ *   3. Llamarlo desde main().
+ */
+public class MainEncapsulamiento {
+
     public static void main(String[] args) {
+        ejercicio1();
+    }
+
+    /**
+     * Ejercicio 1 - Cuenta bancaria.
+     * El saldo es privado y solo se modifica por depositar(), retirar() y transferir(),
+     * que validan las reglas del negocio. No existe setSaldo().
+     */
+    private static void ejercicio1() {
+        System.out.println("##### EJERCICIO 1: CUENTA BANCARIA #####");
 
         CuentaBancaria cuentaBrandon = new CuentaBancaria("001-2345", "Brandon Restrepo", 200000);
         CuentaBancaria cuentaCarlos  = new CuentaBancaria("001-9876", "Carlos Perez");
