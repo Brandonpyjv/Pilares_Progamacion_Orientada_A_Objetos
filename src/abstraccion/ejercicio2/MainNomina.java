@@ -5,9 +5,13 @@ public class MainNomina {
         EmpleadoFijo ef = new EmpleadoFijo("Ana Rios", "1111", 2200000);
         EmpleadoPorHoras eh =
                 new EmpleadoPorHoras("Luis Mora", "2222", 80, 15000);
+        EmpleadoFreelance efr =
+                new EmpleadoFreelance("Sara Diaz", "3333", 4, 300000);
         ef.mostrarRecibo();
         System.out.println("---");
         eh.mostrarRecibo();
+        System.out.println("---");
+        efr.mostrarRecibo();
     }
 }
 
