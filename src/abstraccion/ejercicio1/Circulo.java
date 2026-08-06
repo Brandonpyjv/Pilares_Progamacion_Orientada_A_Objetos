@@ -2,7 +2,7 @@ package abstraccion.ejercicio1;
 
 public class Circulo extends Figura {
     private double radio;
-    
+
     public Circulo(double radio) {
         super("Circulo");
         this.radio = radio;
