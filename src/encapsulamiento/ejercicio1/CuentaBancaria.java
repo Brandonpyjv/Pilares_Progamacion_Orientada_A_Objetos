@@ -32,4 +32,20 @@ public class CuentaBancaria {
             System.out.println("Retiro exitoso de $" + cantidad);
         }
     }
+    public void transferir(CuentaBancaria destino, double cantidad) {
+        if (destino == null) {
+            System.out.println("Error: la cuenta destino no existe.");
+        } else if (destino == this) {
+            System.out.println("Error: no puedes transferir a la misma cuenta.");
+        } else if (cantidad <= 0) {
+            System.out.println("Error: la cantidad debe ser positiva.");
+        } else if (cantidad > saldo) {
+            System.out.println("Error: saldo insuficiente para transferir.");
+        } else {
+            saldo -= cantidad;
+            destino.saldo += cantidad;
+            System.out.println("Transferencia exitosa de $" + cantidad +
+                    " a la cuenta " + destino.numeroCuenta);
+        }
+    }
 }
