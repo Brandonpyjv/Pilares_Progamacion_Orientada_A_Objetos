@@ -10,5 +10,10 @@ public class MainProducto {
         p.vender(20); // Debe fallar
         p.reabastecer(5);
         System.out.println("Stock final: " + p.getStock());
+
+        System.out.println("---");
+
+        p.aplicarDescuento(15);
+        System.out.println("Hay stock disponible? " + (p.hayStock() ? "Si" : "No"));
     }
 }

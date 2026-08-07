@@ -39,4 +39,15 @@ public class Producto {
             System.out.println("Stock actualizado. Nuevo stock: " + stock);
         }
     }
+    public void aplicarDescuento(double porcentaje) {
+        if (porcentaje < 0 || porcentaje > 100) {
+            System.out.println("Porcentaje invalido. Debe estar entre 0 y 100.");
+        } else {
+            precio -= precio * (porcentaje / 100);
+            System.out.println("Descuento aplicado. Nuevo precio: $" + precio);
+        }
+    }
+    public boolean hayStock() {
+        return stock > 0;
+    }
 }
