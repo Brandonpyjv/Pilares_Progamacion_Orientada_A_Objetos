@@ -6,9 +6,12 @@ public class MainAprendiz {
         a.setEdad(19);
         a.setNotaFinal(4.2);
         a.setNotaFinal(7.0); // Invalido - sera rechazado por la clase
+        a.setCorreoInstitucional("lauragomezsena.edu.co"); // Invalido - sin @
+        a.setCorreoInstitucional("laura.gomez@sena.edu.co"); // Valido
         System.out.println("Aprendiz: " + a.getNombre());
         System.out.println("Edad: " + a.getEdad());
         System.out.println("Nota: " + a.getNotaFinal());
+        System.out.println("Correo: " + a.getCorreoInstitucional());
         System.out.println("Aprobo? " + (a.aprobo() ? "Si" : "No"));
     }
 }

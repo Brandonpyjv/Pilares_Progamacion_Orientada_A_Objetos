@@ -5,6 +5,7 @@ public class Aprendiz {
     private String nombre;
     private int edad;
     private double notaFinal;
+    private String correoInstitucional;
     public Aprendiz(String documento, String nombre) {
         this.documento = documento;
         this.nombre = nombre;
@@ -31,5 +32,13 @@ public class Aprendiz {
     }
     public boolean aprobo() {
         return notaFinal >= 3.5;
+    }
+    public String getCorreoInstitucional() { return correoInstitucional; }
+    public void setCorreoInstitucional(String correo) {
+        if (correo.contains("@")) {
+            this.correoInstitucional = correo;
+        } else {
+            System.out.println("Correo invalido. Debe contener @.");
+        }
     }
 }
