@@ -9,5 +9,10 @@ public class MainVehiculo {
         v.acelerar();
         v.frenar();
         System.out.println("Velocidad final: " + v.getVelocidad() + " km/h");
+        System.out.printf("Kilometraje total: %.2f km%n", v.getKilometrajeTotal());
+
+        System.out.println("---");
+        v.reset();
+        System.out.println("Velocidad tras reset: " + v.getVelocidad() + " km/h");
     }
 }
