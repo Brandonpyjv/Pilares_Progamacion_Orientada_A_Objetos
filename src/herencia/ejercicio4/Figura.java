@@ -11,4 +11,7 @@ public class Figura {
     public String getColor() {
         return color;
     }
+    public void describir() {
+        System.out.println("Color: " + color + " - Area: " + calcularArea());
+    }
 }
