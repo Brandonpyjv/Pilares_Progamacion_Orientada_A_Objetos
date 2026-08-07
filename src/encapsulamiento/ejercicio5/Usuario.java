@@ -3,6 +3,9 @@ package encapsulamiento.ejercicio5;
 public class Usuario {
     private String nombreUsuario;
     private String password; // Nunca tendra getter publico
+    private int intentosFallidos;
+    private boolean bloqueado;
+    private static final int MAX_INTENTOS = 3;
     public Usuario(String nombreUsuario, String passwordInicial) {
         this.nombreUsuario = nombreUsuario;
         cambiarPassword(passwordInicial);
@@ -20,7 +23,24 @@ public class Usuario {
         }
     }
     public boolean verificarPassword(String intento) {
-        return this.password != null && this.password.equals(intento);
+        if (bloqueado) {
+            System.out.println("Cuenta bloqueada por intentos fallidos.");
+            return false;
+        }
+        boolean correcta = this.password != null && this.password.equals(intento);
+        if (correcta) {
+            intentosFallidos = 0;
+        } else {
+            intentosFallidos++;
+            if (intentosFallidos >= MAX_INTENTOS) {
+                bloqueado = true;
+                System.out.println("Cuenta bloqueada tras " + MAX_INTENTOS + " intentos fallidos.");
+            }
+        }
+        return correcta;
+    }
+    public boolean isBloqueado() {
+        return bloqueado;
     }
     private boolean esPasswordValida(String pass) {
         if (pass == null || pass.length() < 8) return false;
