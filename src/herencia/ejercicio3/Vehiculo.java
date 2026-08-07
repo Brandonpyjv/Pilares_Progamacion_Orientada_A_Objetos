@@ -10,6 +10,6 @@ public class Vehiculo {
         this.precio = precio;
     }
     public void describir() {
-        System.out.println(marca + " " + modelo + " - $" + precio);
+        System.out.printf("%s %s - $%,.0f%n", marca, modelo, precio);
     }
 }
