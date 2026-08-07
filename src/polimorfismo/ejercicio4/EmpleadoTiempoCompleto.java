@@ -1,0 +1,13 @@
+package polimorfismo.ejercicio4;
+
+public class EmpleadoTiempoCompleto extends Empleado {
+    private double salarioMensual;
+    public EmpleadoTiempoCompleto(String nombre, double salario) {
+        super(nombre);
+        this.salarioMensual = salario;
+    }
+    @Override
+    public double calcularSalario() {
+        return salarioMensual;
+    }
+}
